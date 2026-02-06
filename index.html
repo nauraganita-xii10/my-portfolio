@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naura Ganita Lillah - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --midnight: #0b1957;
+      --sapphire: #426bc2;
+      --petal: #e8d9ed;
+      --lace: #f7f4ed;
+      --lavender: #d2b3d1;
+      --bridal-blue: #e9f3ff;
+    }
+    
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    .font-heading {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .font-body {
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--midnight) 0%, var(--sapphire) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .animate-slide-up {
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    
+    .progress-bar {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1.5s ease-out;
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(11, 25, 87, 0.15);
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sapphire), var(--lavender));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .blob {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: morph 8s ease-in-out infinite;
+    }
+    
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+    
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--lavender), transparent);
+    }
+    
+    .glass-effect {
+      backdrop-filter: blur(10px);
+      background: rgba(247, 244, 237, 0.8);
+    }
+    
+    .icon-circle {
+      transition: all 0.3s ease;
+    }
+    
+    .icon-circle:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--sapphire);
+      box-shadow: 0 0 0 3px rgba(66, 107, 194, 0.15);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--midnight) 0%, var(--sapphire) 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(11, 25, 87, 0.5);
+    }
+    
+    .btn-secondary {
+      border: 2px solid var(--sapphire);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--sapphire);
+      color: white;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body" style="background-color: var(--lace); color: var(--midnight);">
+  <div id="app-wrapper" class="h-full w-full overflow-auto"><!-- Header -->
+   <header id="header" class="fixed top-0 left-0 right-0 z-50 glass-effect">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+     <nav class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--midnight), var(--sapphire));"><span class="text-white font-heading font-bold text-lg">N</span>
+       </div>
+       <div>
+        <h1 id="site-name" class="font-heading font-bold text-xl" style="color: var(--midnight);">Naura Ganita</h1>
+        <p id="tagline" class="text-xs" style="color: var(--sapphire);">Writer • Artist • Dreamer</p>
+       </div>
+      </div><!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link text-sm font-medium" style="color: var(--midnight);">Home</a> <a href="#about" class="nav-link text-sm font-medium" style="color: var(--midnight);">About</a> <a href="#skills" class="nav-link text-sm font-medium" style="color: var(--midnight);">Skills</a> <a href="#portfolio" class="nav-link text-sm font-medium" style="color: var(--midnight);">Portfolio</a> <a href="#experience" class="nav-link text-sm font-medium" style="color: var(--midnight);">Experience</a> <a href="#contact" class="nav-link text-sm font-medium" style="color: var(--midnight);">Contact</a>
+      </div><!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg" style="color: var(--midnight);">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </nav><!-- Mobile Navigation -->
+     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+      <div class="flex flex-col gap-4"><a href="#home" class="text-sm font-medium py-2" style="color: var(--midnight);">Home</a> <a href="#about" class="text-sm font-medium py-2" style="color: var(--midnight);">About</a> <a href="#skills" class="text-sm font-medium py-2" style="color: var(--midnight);">Skills</a> <a href="#portfolio" class="text-sm font-medium py-2" style="color: var(--midnight);">Portfolio</a> <a href="#experience" class="text-sm font-medium py-2" style="color: var(--midnight);">Experience</a> <a href="#contact" class="text-sm font-medium py-2" style="color: var(--midnight);">Contact</a>
+      </div>
+     </div>
+    </div>
+   </header><!-- Hero Section -->
+   <section id="home" class="min-h-screen flex items-center pt-20" style="background: linear-gradient(180deg, var(--bridal-blue) 0%, var(--lace) 100%);">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+     <div class="grid lg:grid-cols-2 gap-12 items-center"><!-- Text Content -->
+      <div class="order-2 lg:order-1">
+       <p id="hero-greeting" class="animate-slide-up stagger-1 opacity-0 text-lg font-medium mb-4" style="color: var(--sapphire);">Hello! I'm</p>
+       <h1 id="hero-name" class="animate-slide-up stagger-2 opacity-0 font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text">Naura Ganita Lillah</h1>
+       <p id="hero-role" class="animate-slide-up stagger-3 opacity-0 text-xl md:text-2xl mb-6" style="color: var(--midnight);">High School Student | Language &amp; Literature Enthusiast | Creative Artist</p>
+       <p class="animate-slide-up stagger-4 opacity-0 text-base leading-relaxed mb-8" style="color: var(--midnight); opacity: 0.8;">A passionate explorer of languages, literature, and the arts—expressing ideas through writing, music, and academic pursuits.</p>
+       <div class="animate-slide-up stagger-5 opacity-0 flex flex-wrap gap-4"><a href="#portfolio" class="btn-primary px-8 py-3 rounded-full text-white font-medium"> View Portfolio </a> <a href="#contact" class="btn-secondary px-8 py-3 rounded-full font-medium" style="color: var(--sapphire);"> Contact Me </a>
+       </div>
+      </div><!-- Illustration -->
+      <div class="order-1 lg:order-2 flex justify-center">
+       <div class="relative">
+        <div class="blob w-72 h-72 md:w-96 md:h-96 animate-float" style="background: linear-gradient(135deg, var(--petal), var(--lavender), var(--bridal-blue));">
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <svg class="w-48 h-48 md:w-64 md:h-64" viewbox="0 0 200 200" fill="none"><!-- Artistic Portrait Illustration --> <circle cx="100" cy="75" r="45" fill="var(--lace)" stroke="var(--midnight)" stroke-width="2" /> <ellipse cx="100" cy="60" rx="35" ry="30" fill="var(--midnight)" /> <circle cx="88" cy="72" r="4" fill="var(--midnight)" /> <circle cx="112" cy="72" r="4" fill="var(--midnight)" /> <path d="M95 82 Q100 88 105 82" stroke="var(--midnight)" stroke-width="2" fill="none" stroke-linecap="round" /> <path d="M70 120 Q100 145 130 120" fill="var(--sapphire)" /> <path d="M75 118 Q100 108 125 118 L130 120 Q100 145 70 120 Z" fill="var(--sapphire)" /> <!-- Book --> <rect x="60" y="155" width="35" height="25" rx="2" fill="var(--petal)" stroke="var(--midnight)" stroke-width="1.5" /> <line x1="77" y1="155" x2="77" y2="180" stroke="var(--midnight)" stroke-width="1" /> <line x1="65" y1="162" x2="73" y2="162" stroke="var(--midnight)" stroke-width="1" /> <line x1="65" y1="168" x2="73" y2="168" stroke="var(--midnight)" stroke-width="1" /> <!-- Pen --> <rect x="110" y="155" width="6" height="30" rx="1" fill="var(--sapphire)" /> <polygon points="113,185 108,195 118,195" fill="var(--midnight)" /> <!-- Music Note --> <circle cx="145" cy="165" r="6" fill="var(--lavender)" stroke="var(--midnight)" stroke-width="1.5" /> <line x1="151" y1="165" x2="151" y2="145" stroke="var(--midnight)" stroke-width="2" /> <path d="M151 145 Q160 148 155 155" stroke="var(--midnight)" stroke-width="2" fill="none" /> <!-- Stars --> <path d="M45 50 L47 55 L52 55 L48 58 L50 63 L45 60 L40 63 L42 58 L38 55 L43 55 Z" fill="var(--sapphire)" opacity="0.6" /> <path d="M160 40 L161 43 L164 43 L162 45 L163 48 L160 46 L157 48 L158 45 L156 43 L159 43 Z" fill="var(--lavender)" />
+         </svg>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 id="about-title" class="font-heading text-4xl md:text-5xl font-bold mb-4 gradient-text">About Me</h2>
+      <div class="section-divider max-w-xs mx-auto"></div>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-12 items-start"><!-- Background & Story -->
+      <div class="space-y-8">
+       <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: var(--bridal-blue);">
+          <svg class="w-6 h-6" fill="none" stroke="var(--sapphire)" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+         </div>
+         <h3 class="font-heading text-2xl font-bold" style="color: var(--midnight);">My Story</h3>
+        </div>
+        <p class="leading-relaxed" style="color: var(--midnight); opacity: 0.85;">I am a senior high school student with a deep interest in language development, artistic expression, and critical thinking. From an early age, I have been immersed in literary writing and involved in both academic and non-academic pursuits that continue to shape my perspective and discipline.</p>
+       </div>
+       <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: var(--petal);">
+          <svg class="w-6 h-6" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+         </div>
+         <h3 class="font-heading text-2xl font-bold" style="color: var(--midnight);">Goals &amp; Dreams</h3>
+        </div>
+        <p class="leading-relaxed" style="color: var(--midnight); opacity: 0.85;">My interests include foreign languages (English, Mandarin, and Korean), literature, music, and visual arts. In the future, I plan to pursue a degree in Law to further develop analytical skills, argumentation, and meaningful social contribution.</p>
+       </div>
+      </div><!-- Experience & Values -->
+      <div class="space-y-8">
+       <div class="card-hover p-8 rounded-3xl" style="background: linear-gradient(135deg, var(--midnight), var(--sapphire)); color: white;">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: rgba(255,255,255,0.2);">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          </svg>
+         </div>
+         <h3 class="font-heading text-2xl font-bold">Experience Highlights</h3>
+        </div>
+        <ul class="space-y-3">
+         <li class="flex items-start gap-3"><span class="w-2 h-2 rounded-full mt-2" style="background: var(--petal);"></span> <span>Head of English Club in junior high school</span></li>
+         <li class="flex items-start gap-3"><span class="w-2 h-2 rounded-full mt-2" style="background: var(--petal);"></span> <span>Vice Head of English Club in senior high school</span></li>
+         <li class="flex items-start gap-3"><span class="w-2 h-2 rounded-full mt-2" style="background: var(--petal);"></span> <span>Active vocal performer at various events</span></li>
+         <li class="flex items-start gap-3"><span class="w-2 h-2 rounded-full mt-2" style="background: var(--petal);"></span> <span>Online novel writer since elementary school</span></li>
+        </ul>
+       </div>
+       <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: var(--lavender);">
+          <svg class="w-6 h-6" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+         </div>
+         <h3 class="font-heading text-2xl font-bold" style="color: var(--midnight);">Core Values</h3>
+        </div>
+        <div class="flex flex-wrap gap-2"><span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--bridal-blue); color: var(--midnight);">Disciplined</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--petal); color: var(--midnight);">Consistent</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--lavender); color: var(--midnight);">Communicative</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--bridal-blue); color: var(--midnight);">Creative</span> <span class="px-4 py-2 rounded-full text-sm font-medium" style="background: var(--petal); color: var(--midnight);">Team Leader</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-20" style="background: linear-gradient(180deg, var(--lace) 0%, var(--bridal-blue) 50%, var(--lace) 100%);">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 gradient-text">Skills &amp; Abilities</h2>
+      <div class="section-divider max-w-xs mx-auto"></div>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-12"><!-- Hard Skills -->
+      <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--midnight), var(--sapphire));">
+         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-2xl font-bold" style="color: var(--midnight);">Hard Skills</h3>
+       </div>
+       <div class="space-y-6"><!-- English -->
+        <div>
+         <div class="flex justify-between mb-2"><span class="font-medium" style="color: var(--midnight);">English</span> <span class="text-sm" style="color: var(--sapphire);">Advanced</span>
+         </div>
+         <div class="progress-bar" style="background: var(--bridal-blue);">
+          <div class="progress-fill" style="width: 90%; background: linear-gradient(90deg, var(--midnight), var(--sapphire));"></div>
+         </div>
+        </div><!-- Korean -->
+        <div>
+         <div class="flex justify-between mb-2"><span class="font-medium" style="color: var(--midnight);">Korean</span> <span class="text-sm" style="color: var(--sapphire);">Basic</span>
+         </div>
+         <div class="progress-bar" style="background: var(--bridal-blue);">
+          <div class="progress-fill" style="width: 40%; background: linear-gradient(90deg, var(--midnight), var(--sapphire));"></div>
+         </div>
+        </div><!-- Mandarin -->
+        <div>
+         <div class="flex justify-between mb-2"><span class="font-medium" style="color: var(--midnight);">Mandarin</span> <span class="text-sm" style="color: var(--sapphire);">Basic</span>
+         </div>
+         <div class="progress-bar" style="background: var(--bridal-blue);">
+          <div class="progress-fill" style="width: 35%; background: linear-gradient(90deg, var(--midnight), var(--sapphire));"></div>
+         </div>
+        </div><!-- Creative Writing -->
+        <div>
+         <div class="flex justify-between mb-2"><span class="font-medium" style="color: var(--midnight);">Creative Writing</span> <span class="text-sm" style="color: var(--sapphire);">Advanced</span>
+         </div>
+         <div class="progress-bar" style="background: var(--bridal-blue);">
+          <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, var(--midnight), var(--sapphire));"></div>
+         </div>
+        </div><!-- Vocal Performance -->
+        <div>
+         <div class="flex justify-between mb-2"><span class="font-medium" style="color: var(--midnight);">Vocal Performance</span> <span class="text-sm" style="color: var(--sapphire);">Intermediate</span>
+         </div>
+         <div class="progress-bar" style="background: var(--bridal-blue);">
+          <div class="progress-fill" style="width: 70%; background: linear-gradient(90deg, var(--midnight), var(--sapphire));"></div>
+         </div>
+        </div><!-- Visual Arts -->
+        <div>
+         <div class="flex justify-between mb-2"><span class="font-medium" style="color: var(--midnight);">Drawing &amp; Painting</span> <span class="text-sm" style="color: var(--sapphire);">Intermediate</span>
+         </div>
+         <div class="progress-bar" style="background: var(--bridal-blue);">
+          <div class="progress-fill" style="width: 65%; background: linear-gradient(90deg, var(--midnight), var(--sapphire));"></div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Soft Skills -->
+      <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--lavender), var(--petal));">
+         <svg class="w-7 h-7" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-2xl font-bold" style="color: var(--midnight);">Soft Skills</h3>
+       </div>
+       <div class="grid grid-cols-2 gap-4"><!-- Leadership -->
+        <div class="icon-circle p-6 rounded-2xl text-center" style="background: var(--bridal-blue);">
+         <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+         </svg><span class="font-medium text-sm" style="color: var(--midnight);">Leadership</span>
+        </div><!-- Public Speaking -->
+        <div class="icon-circle p-6 rounded-2xl text-center" style="background: var(--petal);">
+         <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+         </svg><span class="font-medium text-sm" style="color: var(--midnight);">Public Speaking</span>
+        </div><!-- Time Management -->
+        <div class="icon-circle p-6 rounded-2xl text-center" style="background: var(--lavender);">
+         <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg><span class="font-medium text-sm" style="color: var(--midnight);">Time Management</span>
+        </div><!-- Teamwork -->
+        <div class="icon-circle p-6 rounded-2xl text-center" style="background: var(--bridal-blue);">
+         <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+         </svg><span class="font-medium text-sm" style="color: var(--midnight);">Teamwork</span>
+        </div><!-- Creativity -->
+        <div class="icon-circle p-6 rounded-2xl text-center col-span-2" style="background: linear-gradient(135deg, var(--petal), var(--lavender));">
+         <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="var(--midnight)" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+         </svg><span class="font-medium text-sm" style="color: var(--midnight);">Creativity &amp; Problem-Solving</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Portfolio Section -->
+   <section id="portfolio" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 gradient-text">Portfolio</h2>
+      <p class="max-w-2xl mx-auto" style="color: var(--midnight); opacity: 0.8;">A showcase of my creative works and projects</p>
+      <div class="section-divider max-w-xs mx-auto mt-4"></div>
+     </div>
+     <div class="max-w-4xl mx-auto">
+      <div class="card-hover rounded-3xl overflow-hidden" style="background: white; box-shadow: 0 20px 60px -15px rgba(11, 25, 87, 0.15);"><!-- Project Image/Cover -->
+       <div class="relative h-64 md:h-80" style="background: linear-gradient(135deg, var(--midnight) 0%, var(--sapphire) 50%, var(--lavender) 100%);">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center text-white"><!-- Book Illustration -->
+          <svg class="w-32 h-32 md:w-40 md:h-40 mx-auto mb-4" viewbox="0 0 120 120" fill="none"><!-- Book Base --> <rect x="20" y="30" width="80" height="60" rx="3" fill="var(--petal)" stroke="white" stroke-width="2" /> <rect x="25" y="30" width="70" height="60" rx="2" fill="var(--lace)" /> <!-- Spine --> <rect x="20" y="30" width="8" height="60" fill="var(--lavender)" stroke="white" stroke-width="1" /> <!-- Pages --> <line x1="35" y1="40" x2="85" y2="40" stroke="var(--midnight)" stroke-width="1" opacity="0.3" /> <line x1="35" y1="48" x2="85" y2="48" stroke="var(--midnight)" stroke-width="1" opacity="0.3" /> <line x1="35" y1="56" x2="75" y2="56" stroke="var(--midnight)" stroke-width="1" opacity="0.3" /> <line x1="35" y1="64" x2="80" y2="64" stroke="var(--midnight)" stroke-width="1" opacity="0.3" /> <line x1="35" y1="72" x2="70" y2="72" stroke="var(--midnight)" stroke-width="1" opacity="0.3" /> <!-- Radiation Symbol (subtle) --> <circle cx="90" cy="25" r="12" fill="none" stroke="white" stroke-width="2" opacity="0.5" /> <circle cx="90" cy="25" r="4" fill="white" opacity="0.5" /> <!-- Broken World Icons --> <path d="M15 70 L25 65 L20 80" stroke="white" stroke-width="1.5" opacity="0.4" /> <path d="M100 75 L110 70 L105 85" stroke="white" stroke-width="1.5" opacity="0.4" />
+          </svg>
+          <h3 class="font-heading text-3xl md:text-4xl font-bold">CATASTROPHE</h3>
+          <p class="text-sm opacity-80 mt-2">An Online Novel</p>
+         </div>
+        </div><!-- Decorative Elements -->
+        <div class="absolute top-4 left-4 w-8 h-8 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
+        <div class="absolute bottom-4 right-4 w-12 h-12 rounded-full" style="background: rgba(255,255,255,0.1);"></div>
+       </div><!-- Project Details -->
+       <div class="p-8 md:p-10">
+        <div class="flex flex-wrap gap-2 mb-6"><span class="px-3 py-1 rounded-full text-xs font-medium" style="background: var(--bridal-blue); color: var(--midnight);">Fiction</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: var(--petal); color: var(--midnight);">Post-Apocalyptic</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: var(--lavender); color: var(--midnight);">Survival</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: var(--bridal-blue); color: var(--midnight);">Wattpad</span>
+        </div>
+        <h3 class="font-heading text-2xl md:text-3xl font-bold mb-4" style="color: var(--midnight);">Catastrophe</h3>
+        <p class="leading-relaxed mb-6" style="color: var(--midnight); opacity: 0.85;">An online novel that tells the story of five teenagers struggling to survive in a post-nuclear world. Trapped in a new reality filled with brutal predators, they face growing threats as hope slowly fades. A gripping tale of friendship, survival, and the human spirit against impossible odds.</p>
+        <div class="flex flex-wrap items-center gap-4"><a href="https://www.wattpad.com/story/341916657?utm_source=android&amp;utm_medium=link&amp;utm_content=story_info&amp;wp_page=story_details_button" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3 rounded-full text-white font-medium inline-flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+          </svg> Read on Wattpad </a> <span class="text-sm" style="color: var(--sapphire);">
+          <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg> Ongoing Series </span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience & Achievements Section -->
+   <section id="experience" class="py-20" style="background: linear-gradient(180deg, var(--lace) 0%, var(--petal) 50%, var(--lace) 100%);">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 gradient-text">Experience &amp; Achievements</h2>
+      <div class="section-divider max-w-xs mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"><!-- Organizational Experience -->
+      <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--midnight), var(--sapphire));">
+         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-2xl font-bold" style="color: var(--midnight);">Organizations</h3>
+       </div>
+       <div class="space-y-6"><!-- Junior High -->
+        <div class="relative pl-8 border-l-2" style="border-color: var(--lavender);">
+         <div class="absolute -left-2 top-0 w-4 h-4 rounded-full" style="background: var(--sapphire);"></div>
+         <div class="mb-1"><span class="text-xs font-medium px-2 py-1 rounded" style="background: var(--bridal-blue); color: var(--sapphire);">Junior High School</span>
+         </div>
+         <h4 class="font-bold text-lg mt-2" style="color: var(--midnight);">Head of English Club</h4>
+         <p class="text-sm mt-1" style="color: var(--midnight); opacity: 0.7;">Led club activities, organized events, and mentored members in English language development.</p>
+        </div><!-- Senior High -->
+        <div class="relative pl-8 border-l-2" style="border-color: var(--lavender);">
+         <div class="absolute -left-2 top-0 w-4 h-4 rounded-full" style="background: var(--sapphire);"></div>
+         <div class="mb-1"><span class="text-xs font-medium px-2 py-1 rounded" style="background: var(--petal); color: var(--midnight);">Senior High School</span>
+         </div>
+         <h4 class="font-bold text-lg mt-2" style="color: var(--midnight);">Vice Head of English Club</h4>
+         <p class="text-sm mt-1" style="color: var(--midnight); opacity: 0.7;">Supporting club leadership, coordinating activities, and fostering English learning environment.</p>
+        </div>
+       </div>
+      </div><!-- Certificates & Achievements -->
+      <div class="card-hover p-8 rounded-3xl" style="background: linear-gradient(135deg, var(--midnight), var(--sapphire)); color: white;">
+       <div class="flex items-center gap-4 mb-8">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: rgba(255,255,255,0.2);">
+         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-2xl font-bold">Achievements</h3>
+       </div>
+       <div class="space-y-6"><!-- Geography Olympiad -->
+        <div class="p-6 rounded-2xl" style="background: rgba(255,255,255,0.1);">
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #C0C0C0, #E8E8E8);">
+           <svg class="w-6 h-6" fill="#666" viewbox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+           </svg>
+          </div>
+          <div><span class="inline-block px-2 py-1 rounded text-xs font-medium mb-2" style="background: rgba(255,255,255,0.2);"> 🥈 Silver Medal </span>
+           <h4 class="font-bold text-lg">Geography Olympiad</h4>
+           <p class="text-sm opacity-80 mt-1">Senior High School Level</p>
+           <p class="text-xs opacity-60 mt-2">POSI &amp; Pendiks Geonusa</p>
+          </div>
+         </div>
+        </div><!-- More achievements space -->
+        <div class="text-center py-4 rounded-2xl" style="background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2);">
+         <p class="text-sm opacity-60">More achievements coming soon...</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 id="contact-title" class="font-heading text-4xl md:text-5xl font-bold mb-4 gradient-text">Get In Touch</h2>
+      <p class="max-w-2xl mx-auto" style="color: var(--midnight); opacity: 0.8;">Feel free to reach out for collaborations, inquiries, or just to say hello!</p>
+      <div class="section-divider max-w-xs mx-auto mt-4"></div>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto"><!-- Contact Info -->
+      <div class="space-y-6"><!-- Email --> <a href="mailto:ganietalillah31@gmail.com" class="card-hover flex items-center gap-4 p-6 rounded-2xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: var(--bridal-blue);">
+         <svg class="w-6 h-6" fill="none" stroke="var(--sapphire)" viewbox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg>
+        </div>
+        <div>
+         <h4 class="font-medium" style="color: var(--midnight);">Email</h4>
+         <p id="contact-email-display" class="text-sm" style="color: var(--sapphire);">ganietalillah31@gmail.com</p>
+        </div></a> <!-- WhatsApp -->
+       <div class="card-hover flex items-center gap-4 p-6 rounded-2xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: var(--petal);">
+         <svg class="w-6 h-6" fill="var(--midnight)" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+         </svg>
+        </div>
+        <div>
+         <h4 class="font-medium" style="color: var(--midnight);">WhatsApp</h4>
+         <p class="text-sm" style="color: var(--sapphire);">Available upon request</p>
+        </div>
+       </div><!-- Instagram --> <a href="https://www.instagram.com/eicliptichalo?igsh=MWRwdzN6dTlsNXV3Mg==" target="_blank" rel="noopener noreferrer" class="card-hover flex items-center gap-4 p-6 rounded-2xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--lavender), var(--petal));">
+         <svg class="w-6 h-6" fill="var(--midnight)" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg>
+        </div>
+        <div>
+         <h4 class="font-medium" style="color: var(--midnight);">Instagram</h4>
+         <p class="text-sm" style="color: var(--sapphire);">@eicliptichalo</p>
+        </div></a>
+      </div><!-- Contact Form -->
+      <div class="card-hover p-8 rounded-3xl" style="background: white; box-shadow: 0 10px 40px -10px rgba(11, 25, 87, 0.1);">
+       <h3 class="font-heading text-2xl font-bold mb-6" style="color: var(--midnight);">Send a Message</h3>
+       <form id="contact-form" class="space-y-5">
+        <div><label for="name" class="block text-sm font-medium mb-2" style="color: var(--midnight);">Your Name</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border-2 transition-all" style="border-color: var(--bridal-blue); background: var(--lace);" placeholder="Enter your name">
+        </div>
+        <div><label for="email" class="block text-sm font-medium mb-2" style="color: var(--midnight);">Your Email</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border-2 transition-all" style="border-color: var(--bridal-blue); background: var(--lace);" placeholder="Enter your email">
+        </div>
+        <div><label for="message" class="block text-sm font-medium mb-2" style="color: var(--midnight);">Message</label> <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border-2 transition-all resize-none" style="border-color: var(--bridal-blue); background: var(--lace);" placeholder="Write your message here..."></textarea>
+        </div><button type="submit" class="btn-primary w-full py-4 rounded-xl text-white font-medium"> Send Message </button>
+       </form>
+       <div id="form-success" class="hidden mt-4 p-4 rounded-xl text-center" style="background: var(--bridal-blue);">
+        <p class="font-medium" style="color: var(--sapphire);">✓ Message sent successfully!</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer style="background: var(--midnight);">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-6"><!-- Logo & Copyright -->
+      <div class="text-center md:text-left">
+       <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--sapphire), var(--lavender));"><span class="text-white font-heading font-bold text-lg">N</span>
+        </div><span class="font-heading font-bold text-xl text-white">Naura Ganita</span>
+       </div>
+       <p class="text-sm" style="color: var(--lavender);">© eicliptichalo – 2025</p>
+      </div><!-- Social Links -->
+      <div class="flex items-center gap-4"><a href="https://www.instagram.com/eicliptichalo?igsh=MWRwdzN6dTlsNXV3Mg==" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a> <a href="https://www.wattpad.com/story/341916657" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: rgba(255,255,255,0.1);">
+        <svg class="w-5 h-5" fill="white" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg></a>
+      </div><!-- Navigation -->
+      <div class="flex flex-wrap justify-center gap-6"><a href="#home" class="text-sm transition-colors hover:text-white" style="color: var(--lavender);">Home</a> <a href="#about" class="text-sm transition-colors hover:text-white" style="color: var(--lavender);">About</a> <a href="#portfolio" class="text-sm transition-colors hover:text-white" style="color: var(--lavender);">Portfolio</a> <a href="#contact" class="text-sm transition-colors hover:text-white" style="color: var(--lavender);">Contact</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      site_name: 'Naura Ganita',
+      tagline: 'Writer • Artist • Dreamer',
+      hero_greeting: "Hello! I'm",
+      hero_name: 'Naura Ganita Lillah',
+      hero_role: 'High School Student | Language & Literature Enthusiast | Creative Artist',
+      about_title: 'About Me',
+      contact_title: 'Get In Touch',
+      contact_email: 'ganietalillah31@gmail.com',
+      background_color: '#f7f4ed',
+      surface_color: '#ffffff',
+      text_color: '#0b1957',
+      primary_action_color: '#426bc2',
+      secondary_action_color: '#d2b3d1',
+      font_family: 'Outfit',
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formSuccess.classList.remove('hidden');
+      contactForm.reset();
+      setTimeout(() => {
+        formSuccess.classList.add('hidden');
+      }, 3000);
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > 100) {
+        header.style.boxShadow = '0 4px 20px rgba(11, 25, 87, 0.1)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Animate progress bars on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const progressBars = entry.target.querySelectorAll('.progress-fill');
+          progressBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0';
+            setTimeout(() => {
+              bar.style.width = width;
+            }, 100);
+          });
+        }
+      });
+    }, observerOptions);
+
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      progressObserver.observe(skillsSection);
+    }
+
+    // Element SDK initialization
+    async function onConfigChange(cfg) {
+      const fontFamily = cfg.font_family || defaultConfig.font_family;
+      const fontSize = cfg.font_size || defaultConfig.font_size;
+      
+      // Update text content
+      document.getElementById('site-name').textContent = cfg.site_name || defaultConfig.site_name;
+      document.getElementById('tagline').textContent = cfg.tagline || defaultConfig.tagline;
+      document.getElementById('hero-greeting').textContent = cfg.hero_greeting || defaultConfig.hero_greeting;
+      document.getElementById('hero-name').textContent = cfg.hero_name || defaultConfig.hero_name;
+      document.getElementById('hero-role').textContent = cfg.hero_role || defaultConfig.hero_role;
+      document.getElementById('about-title').textContent = cfg.about_title || defaultConfig.about_title;
+      document.getElementById('contact-title').textContent = cfg.contact_title || defaultConfig.contact_title;
+      document.getElementById('contact-email-display').textContent = cfg.contact_email || defaultConfig.contact_email;
+      
+      // Update font family
+      document.body.style.fontFamily = `${fontFamily}, Outfit, sans-serif`;
+      
+      // Apply colors
+      const bgColor = cfg.background_color || defaultConfig.background_color;
+      const textColor = cfg.text_color || defaultConfig.text_color;
+      const primaryColor = cfg.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = cfg.secondary_action_color || defaultConfig.secondary_action_color;
+      const surfaceColor = cfg.surface_color || defaultConfig.surface_color;
+      
+      document.documentElement.style.setProperty('--lace', bgColor);
+      document.documentElement.style.setProperty('--midnight', textColor);
+      document.documentElement.style.setProperty('--sapphire', primaryColor);
+      document.documentElement.style.setProperty('--lavender', secondaryColor);
+      
+      // Update font sizes proportionally
+      const headings = document.querySelectorAll('.font-heading');
+      headings.forEach(h => {
+        h.style.fontFamily = `Cormorant Garamond, ${fontFamily}, serif`;
+      });
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => cfg.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ secondary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['site_name', cfg.site_name || defaultConfig.site_name],
+        ['tagline', cfg.tagline || defaultConfig.tagline],
+        ['hero_greeting', cfg.hero_greeting || defaultConfig.hero_greeting],
+        ['hero_name', cfg.hero_name || defaultConfig.hero_name],
+        ['hero_role', cfg.hero_role || defaultConfig.hero_role],
+        ['about_title', cfg.about_title || defaultConfig.about_title],
+        ['contact_title', cfg.contact_title || defaultConfig.contact_title],
+        ['contact_email', cfg.contact_email || defaultConfig.contact_email]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9873ca9701a3e3',t:'MTc3MDM1Nzg5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
